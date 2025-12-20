@@ -1,7 +1,6 @@
 package com.paramkansagra.springBootProject1;
 
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,13 +8,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootProject1Application implements CommandLineRunner {
 
-    // Autowired also called field injection and the dependency injection mechanism will automatically inject the method here
-    @Autowired
-    private RazorPaymentService paymentService;
+    private final PaymentService paymentService;
 
     // this is where the program starts from
     public static void main(String[] args) {
         SpringApplication.run(SpringBootProject1Application.class, args);
+    }
+
+    public SpringBootProject1Application(PaymentService paymentService){
+        this.paymentService = paymentService;
     }
 
     // This runs just after the application context is set and everything is good to go
