@@ -1,6 +1,7 @@
 package com.paramkansagra.springBootProject1;
 
 import org.jspecify.annotations.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,14 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootProject1Application implements CommandLineRunner {
 
-    // This is tight coupling and
+    // Autowired also called field injection and the dependency injection mechanism will automatically inject the method here
+    @Autowired
     private RazorPaymentService paymentService;
-
-    // Now dependency injection framework will see that we need the payment service here
-    // and would automatically add the dependency using the bean (component)
-    public SpringBootProject1Application(RazorPaymentService razorPaymentService) {
-        this.paymentService = razorPaymentService;
-    }
 
     // this is where the program starts from
     public static void main(String[] args) {
