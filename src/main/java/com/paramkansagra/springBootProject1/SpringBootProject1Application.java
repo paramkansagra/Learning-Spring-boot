@@ -8,16 +8,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootProject1Application implements CommandLineRunner {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootProject1Application.class, args);
-	}
+    // this is where the program starts from
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootProject1Application.class, args);
+    }
 
-	// This is tight coupling and
-	RazorPaymentService paymentService = new RazorPaymentService();
+    // This is tight coupling and
+    private RazorPaymentService paymentService = new RazorPaymentService();
 
-	// This runs just after the application context is set and everything is good to go
-	@Override
-	public void run(String @NonNull ... args) throws Exception {
-		paymentService.pay();
-	}
+    // This runs just after the application context is set and everything is good to go
+    // Also this is a non-static method meaning we can use objects which are not static, and we can init on run time
+    @Override
+    public void run(String @NonNull ... args) throws RuntimeException {
+        try {
+            String payment = paymentService.pay();
+            System.out.println("Payment done:" + payment);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
