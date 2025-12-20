@@ -1,5 +1,8 @@
 package com.paramkansagra.springBootProject1;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class RazorPaymentService {
     public String pay(){
         String payment = "Razorpay payment";
